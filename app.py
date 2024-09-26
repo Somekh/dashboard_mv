@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from scipy import stats
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 st.title("Проверка гипотез")
 alpha = st.number_input("Укажите уровень стат. значимости:", min_value=0.01, max_value=0.2, value=0.05)
@@ -19,6 +20,29 @@ if p_value > alpha:
     st.write("Можно говорить о том что нет стат значимой разницы между выборками")
 else:
     st.write('Можно говориь о том, что есть статистически значимая разница между двумя выборками')
+
+plt.figure(figsize=(10, 5))
+
+sns.kdeplot(men['work_days'], label='Мужчины', fill=True)
+sns.kdeplot(women['work_days'], label='Женщины', fill=True)
+
+plt.title(f"Графики плотности вероятности пропущенных рабочих дней")
+plt.xlabel('Кол-во пропущенных рабочих дней')
+plt.ylabel("Плотность")
+plt.legend()
+
+st.show()
+
+
+
+
+
+
+
+
+
+
+
 
 st.header('рабочие дни', divider='gray')
 st.line_chart(df["work_days"])
