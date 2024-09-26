@@ -5,7 +5,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 alpha = st.number_input("Укажите уровень стат. значимости:", min_value=0.01, max_value=0.2, value=0.05)
-days = st.number_input("Укажите порог количества дней:", min_value=1, max_value=7, value=2)
+days = st.number_input("Укажите порог количества дней:", min_value=1, max_value=6, value=2)
 
 #Загрузка файла
 uploaded_file = st.file_uploader("Загрузите CSV файл:", type=["csv"])
