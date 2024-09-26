@@ -11,7 +11,12 @@ days = st.number_input("Укажите порог количества дней:
 uploaded_file = st.file_uploader("Загрузите CSV файл:", type=["csv"])
 
 if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file, encoding='cp1251')
+    try:
+
+        df = pd.read_csv(uploaded_file, encoding='cp1251')
+    except:
+        st.header('Ошибка чтения файла, применён файл по умолчанию', divider='gray')
+        df = pd.read_csv("stats.csv", encoding='cp1251')
 else:
     df = pd.read_csv("stats.csv", encoding='cp1251')
 
