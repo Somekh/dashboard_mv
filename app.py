@@ -25,10 +25,11 @@ t_statistic, p_value = stats.ttest_ind(men['work_days'], women['work_days'], equ
 
 st.title("Проверка гипотез")
 st.header('Пол', divider='gray')
+st.write(f"p_value = {round(p_value, 4)}. Статистика = {round(t_statistic, 4)}.")
 if p_value > alpha:
-    st.write(f"p_value = {round(p_value, 4)}. Статистика = {round(t_statistic, 4)}. Можно говорить о том, что нет статистически значимой разницы между двумя выборками")
+    st.write(f"Можно говорить о том, что нет статистически значимой разницы между двумя выборками")
 else:
-    st.write(f"p_value = {round(p_value, 4)}. Статистика = {round(t_statistic, 4)}. Можно говорить о том, что есть статистически значимая разница между двумя выборками")
+    st.write(f"Можно говорить о том, что есть статистически значимая разница между двумя выборками")
 
 # Построение графика
 fig, ax = plt.subplots(figsize=(10, 5))
@@ -47,10 +48,11 @@ older = df[(df['age'] > age) & (df['work_days'] > days)]
 younger = df[(df['age'] <= age) & (df['work_days'] > days)]
 t_statistic_age, p_value = stats.ttest_ind(older['work_days'], younger['work_days'], equal_var=False)
 
+st.write(f"p_value = {round(p_value, 4)}. Статистика = {round(t_statistic_age, 4)}.")
 if p_value > alpha:
-    st.write(f"p_value = {round(p_value, 4)}. Статистика = {round(t_statistic_age, 4)}. Можно говорить о том, что нет статистически значимой разницы между двумя выборками")
+    st.write(f"Можно говорить о том, что нет статистически значимой разницы между двумя выборками")
 else:
-    st.write(f"p_value = {round(p_value, 4)}. Статистика = {round(t_statistic_age, 4)}. Можно говорить о том, что есть статистически значимая разница между двумя выборками")
+    st.write(f"Можно говорить о том, что есть статистически значимая разница между двумя выборками")
 
 # Построение графика
 fig, ax = plt.subplots(figsize=(10, 5))
