@@ -21,18 +21,17 @@ if p_value > alpha:
 else:
     st.write('Можно говориь о том, что есть статистически значимая разница между двумя выборками')
 
-plt.figure(figsize=(10, 5))
+fig, ax = plt.subplots(figsize=(10, 5))
 
-sns.kdeplot(men['work_days'], label='Мужчины', fill=True)
-sns.kdeplot(women['work_days'], label='Женщины', fill=True)
+sns.kdeplot(men['work_days'], label='Мужчины', fill=True, ax=ax)
+sns.kdeplot(women['work_days'], label='Женщины', fill=True, ax=ax)
 
-plt.title(f"Графики плотности вероятности пропущенных рабочих дней")
-plt.xlabel('Кол-во пропущенных рабочих дней')
-plt.ylabel("Плотность")
-plt.legend()
+ax.set_title(f"Графики плотности вероятности пропущенных рабочих дней")
+ax.set_xlabel('Кол-во пропущенных рабочих дней')
+ax.set_ylabel("Плотность")
+ax.legend()
 
-st.show()
-
+st.pyplot(fig)
 
 
 
