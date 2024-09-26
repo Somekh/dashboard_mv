@@ -41,7 +41,7 @@ ax.legend()
 st.pyplot(fig)
 
 st.header('Возраст', divider='gray')
-age = st.number_input("Введите ваш возраст:", min_value=0, max_value=59, value=35)
+age = st.number_input("Введите ваш возраст:", min_value=0, max_value=40, value=35)
 
 older = df[(df['age'] > age) & (df['work_days'] > days)]
 younger = df[(df['age'] <= age) & (df['work_days'] > days)]
