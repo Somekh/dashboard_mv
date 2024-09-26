@@ -17,9 +17,9 @@ men = df[(df['gender'] == 1) & (df['work_days'] > days)]
 women = df[(df['gender'] == 0) & (df['work_days'] > days)]
 t_statistic, p_value = stats.ttest_ind(men['work_days'], women['work_days'], equal_var=False)
 if p_value > alpha:
-    st.write("Можно говорить о том что нет стат значимой разницы между выборками")
+    st.write(f"p_value = {p_value}. Можно говорить о том что нет стат значимой разницы между выборками")
 else:
-    st.write('Можно говориь о том, что есть статистически значимая разница между двумя выборками')
+    st.write(f"p_value = {p_value}. Можно говориь о том, что есть статистически значимая разница между двумя выборками")
 
 fig, ax = plt.subplots(figsize=(10, 5))
 
