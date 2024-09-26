@@ -10,34 +10,10 @@ days = st.number_input("Укажите порог количества дней:
 #Загрузка файла
 uploaded_file = st.file_uploader("Загрузите CSV файл:", type=["csv"])
 
-# if uploaded_file is not None:
-#     try:
-
-#         df = pd.read_csv(uploaded_file, encoding='cp1251')
-#     except:
-#         st.write('Ошибка чтения файла, применён файл по умолчанию')
-#         df = pd.read_csv("stats.csv", encoding='cp1251')
-# else:
-#     df = pd.read_csv("stats.csv", encoding='cp1251')
 if uploaded_file is not None:
-    try:
-        # Получаем содержимое файла как байты
-        bytes_data = uploaded_file.read()
-        
-        # Преобразуем байты в строку
-        string_data = bytes_data.decode('cp1251')  # Укажите нужную кодировку
-        
-        # Создаем DataFrame из строки
-        df = pd.read_csv(io.StringIO(string_data))
-    except Exception as e:
-        st.write(f"Ошибка чтения файла: {e}")
-        st.write("Применён файл по умолчанию")
-        df = pd.read_csv("stats.csv", encoding='cp1251')
+    df = pd.read_csv(uploaded_file, encoding='cp1251')
 else:
     df = pd.read_csv("stats.csv", encoding='cp1251')
-
-
-
 
 df = df.set_axis(['work_days', 'age', 'gender'], axis=1)
 df['gender'] = df['gender'].replace({'М': 1, 'Ж': 0})
