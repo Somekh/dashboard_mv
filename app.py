@@ -4,15 +4,22 @@ from scipy import stats
 import seaborn as sns
 
 st.title("Проверка гипотез")
+alpha = st.number_input("Укажите уровень стат. значимости:", min_value=0.01, max_value=0.2, value=0.05)
+days = st.number_input("Укажите порог количества дней:", min_value=1, max_value=50, value=2)
 
-# Загрузка данных
 df = pd.read_csv("stats.csv", encoding='cp1251')
-
 df = df.set_axis(['work_days', 'age', 'gender'], axis=1)
 df['gender'] = df['gender'].replace({'М': 1, 'Ж': 0})
 df.to_parquet('ttr.parquet')
-# Визуализация данных
-age = st.number_input("Укажите уровень стат. значимости:", min_value=0.01, max_value=0.2, value=0.05)
+
+men = df[(df['gender'] == 1) & (df['work_days'] > days)]
+women = df[(df['gender'] == 0) & (df['work_days'] > days)]
+t_statistic, p_value = stats.ttest_ind(men['work_days'], women['work_days'], equal_var=False)
+if p_value > alpha:
+    st.write("Можно говорить о том что нет стат значимой разницы между выборками")
+else:
+    st.write('Можно говориь о том, что есть статистически значимая разница между двумя выборками')
+
 st.header('рабочие дни', divider='gray')
 st.line_chart(df["work_days"])
 
