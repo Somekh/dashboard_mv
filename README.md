@@ -20,9 +20,9 @@
 
 ### Запуск дашборда:
 
-1. Клонируйте репозиторий: git clone https://github.com/Somekh/dashboard_mv.git
-2. Установите необходимые библиотеки: pip install -r requirements.txt
-3. Запустите Streamlit-приложение: streamlit run app.py
+1. Клонируйте репозиторий: `git clone https://github.com/Somekh/dashboard_mv.git`
+2. Установите необходимые библиотеки: `pip install -r requirements.txt`
+3. Запустите Streamlit-приложение: `streamlit run app.py`
 
 ### Дополнительные возможности:
 
